@@ -37,35 +37,3 @@ class admin_login_verify{
         }
     }
 }
-
-class admin_login{
-    public function get(){
-        $row = \Model\User::check_cookie_admin($_COOKIE['sessionid']);
-        $logic = TRUE;
-        if (!empty($row[0])) {
-            session_start();
-            $_SESSION['uname'] = $row[0]['uname'];
-            echo \View\Loader::make()->render("templates/client_mainpage.twig", array(
-                "post" => $_SESSION['uname'],
-            ));
-            $logic = TRUE;
-        }else{
-            $logic = FALSE;
-        }
-        if($logic){
-        }else{
-            echo \View\Loader::make()->render("templates/Login_admin.twig",array());
-        }
-    }
-}
-
-class admin_logout{
-    public function get(){
-        $_SESSION = NULL;
-        \Model\User::delete_cookie($_COOKIE['sessionid']);
-        setcookie('sessionId',"",time()-60*60*24*30);
-        setcookie('PHPSESSID',"",time()-60*60*24*30);
-        session_destroy();
-        header('Location: /');
-    }
-}
