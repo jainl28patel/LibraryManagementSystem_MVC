@@ -1,0 +1,59 @@
+{% extends "templates/base.twig" %}
+{% block title %}Client main Page{% endblock %}
+{% block style %}
+    <style>
+        body{
+            background-color: rgb(8, 66, 68);
+        }
+        .body{
+            display: flex;
+            flex-direction: column;
+            justify-content:space-around;
+            align-content: space-around;
+        }
+        .box1{
+            font-size: 15vw;
+            font-weight: 900;
+            justify-content: center;
+            align-items: center;
+            color: aliceblue;
+        }
+        .box2{
+            display: flex;
+            background-color: rgb(189, 189, 172);
+            border-radius: 10px;
+            align-items: center;
+            justify-content: center;
+            width: 90vw;
+            height: 30vw;  
+            margin-left: 5vw;
+        }
+        .element2{
+            padding: 10px 20px 10px 20px;
+        }
+        .buttons{
+            width: 20vw;
+            height: 10vw;
+            border-radius: 10vw;
+            font-size: 2vw;
+        }
+        .box1_5{
+            margin: auto;
+            font-size: 2vw;
+            font-weight: 500;
+            color: aliceblue;
+        }
+    </style>
+    {% endblock %}
+
+    {% block body %}
+    <div class="body">
+        <div class="box1">LIBRARY</div>
+        <div class="box1_5"> Welcome ADMIN </div>
+        <div class="box2">
+            <div class="element2"><form action="/view_edit" method="get"><input type="submit" value="View & Edit" class="buttons"></form></div>
+            <div class="element2"><form action="/view_checkin_checkout" method="get"><input type="submit" value="Checkin & Checkout" class="buttons"></form></div>    
+            <div class="element2"><form action="/admin/logout" method="get"><input type="submit" value="Logout" class="buttons"></form></div>    
+        </div>    
+    </div>
+    {% endblock %}

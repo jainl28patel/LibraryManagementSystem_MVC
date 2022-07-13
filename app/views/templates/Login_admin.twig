@@ -1,0 +1,57 @@
+{% extends "templates/base.twig" %}
+{% block title %}Login as Admin{% endblock %}
+{% block style %}
+        <style>
+        body{
+            background-color: rgb(8, 66, 68);
+        }
+        .body{
+            display: flex;
+            flex-direction: column;
+            justify-content:space-around;
+            align-content: space-around;
+        }
+        .box1{
+            font-size: 15vw;
+            font-weight: 900;
+            justify-content: center;
+            align-items: center;
+            color: aliceblue;
+        }
+        .box2{
+            display: flex;
+            flex-direction: column;
+            background-color: rgb(189, 189, 172);
+            border-radius: 10px;
+            align-items: center;
+            justify-content: center;
+            width: 90vw;
+            height: 30vw;  
+            margin-left: 5vw;
+        }
+        .element1{
+            font-size: 2.5vw;
+            font-weight: 600;
+        }
+        .element2{
+            padding: 10px 0px 10px 0px;;
+        }
+        .element4{
+            padding: 5px 0px 5px 0px;;
+        }
+    </style>
+    {% endblock %}
+
+    {% block body %}
+    <div class="body">
+        <div class="box1">LIBRARY</div>
+        <div class="box2">
+            <form action="/admin/login" method="post">
+                <div class="element1">LOGIN Admin</div>
+                <div class="element2">Enter Username : <input type="text" name="uname" id="uname" size="40" ></div>
+                <div class="element2">Enter Password : <input type="text" name="password" id="password" size="40" ></div>
+                <div class="element5"> <input type="submit" value="Login as Admin"></div>
+            </form>
+        </div>
+    </div>
+    {% endblock %}

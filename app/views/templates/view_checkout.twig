@@ -1,0 +1,114 @@
+{% extends "templates/base.twig" %}
+{% block title %}View Checkout{% endblock %}
+{% block style %}
+    <style>
+        body{
+            background-color: rgb(8, 66, 68);
+        }
+        .body{
+            display: flex;
+            flex-direction: column;
+            justify-content:space-around;
+            align-content: space-around;
+        }
+        .box1{
+            margin: auto;
+            font-size: 15vw;
+            font-weight: 900;
+            justify-content: center;
+            align-items: center;
+            color: aliceblue;
+        }
+        .box2{
+            display: flex;
+            background-color: rgb(189, 189, 172);
+            border-radius: 10px;
+            align-items: center;
+            justify-content: center;
+            width: 97vw;
+            height: fit-content;  
+            margin: auto;
+        }
+        .element2{
+            padding: 10px 20px 10px 20px;
+        }
+        .buttons{
+            width: 20vw;
+            height: 10vw;
+            border-radius: 10vw;
+            font-size: 2vw;
+        }
+        .box1_5{
+            margin: auto;
+            font-size: 2vw;
+            font-weight: 500;
+            color: aliceblue;
+        }
+        .table{
+            border: 3px solid black;
+            margin: 20px;
+        }
+        tr{
+            border: 3px solid black;
+        }
+        th{
+            border: 3px solid black;
+        }
+        td{
+            padding: 10px;
+        }
+        .hidden{
+            width: 0;
+            visibility: hidden;
+        }
+        .box3{
+            margin: auto;
+        }
+        .back{
+            width: 20vw;
+            height: 5vw;
+            border-radius: 25px;
+            font-size: larger;
+            font-weight: 700;
+            background-color: rgb(210, 226, 179);
+        }
+    </style>
+    {% endblock %}
+
+    {% block body %}
+    <div class="body">
+        <div class="box1">LIBRARY</div>
+        <div class="box1_5">Welcome </div>
+        <div class="box2">
+            <table class="table">
+                <tr>
+                    <th>Cover Photo</th>
+                    <th>Name</th>
+                    <th>ISBN</th>
+                    <th>Quantity</th>
+                    <th>Checkout Reqest</th>
+                </tr>
+                {% for key_a, value_a in booklist %}
+                    
+                    <tr>
+                        <td><img src="" alt=""></td>
+                        <td>{{ booklist[key_a]['name'] }}</td>
+                        <td>{{ booklist[key_a]['ISBN'] }}</td>
+                        <td>{{ booklist[key_a]['count'] }}</td>
+                        <td><form action="\ISBN" method="post">
+                                <input type="text" name="ISBN" value="{{ booklist[key_a]['ISBN'] }}" class="hidden">
+                                <input type="submit" value="Checkout">
+                            </form>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+            </table>
+        </div>    
+        <div class="box3">
+            <form action="/client" method="get">
+                <input type="submit" value="BACK" class="back">
+            </form>
+        </div>
+    </div>
+    {% endblock %}
