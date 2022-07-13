@@ -24,10 +24,8 @@ class book{
         $row = $query->fetchAll();
         return $row;
     }
-    public static function getBookList_with_user(){
+    public static function getBookList_with_user($uname){
         $db = \DB::get_instance();
-        session_start();
-        $uname = $_SESSION['uname'];
         $query = $db->prepare("select * from with_user where uname = ?");
         $query->execute([$uname]);
         $row = $query->fetchAll();
@@ -51,17 +49,18 @@ class book{
         $db = \DB::get_instance();
         $query = $db->prepare("UPDATE booklist SET count = ? WHERE ISBN = ?");
         $query->execute([$qty,$isbn]);
-        $query2 = $db->prepare("INSERT INTO checkout values (?,?,?)");
-        echo $uname;
-        $query2->execute([$name,$isbn,$uname]);
+        \Model\book::insert_checkout($name,$isbn,$uname);
+    }
+    public static function insert_checkout($name,$isbn,$uname){
+        $db = \DB::get_instance();
+        $query = $db->prepare("INSERT INTO checkout values (?,?,?)");
+        $query->execute([$name,$isbn,$uname]);
     }
     public static function checkin_book($isbn,$name,$qty,$uname){
         $db = \DB::get_instance();
         $query = $db->prepare("UPDATE booklist SET count = ? WHERE ISBN = ?");
         $query->execute([$qty,$isbn]);
-        $query2 = $db->prepare("INSERT INTO checkout values (?,?,?)");
-        echo $uname;
-        $query2->execute([$name,$isbn,$uname]);
+        \Model\book::insert_checkout($name,$isbn,$uname);
     }
     public static function change_qty($isbn,$qty){
         $db = \DB::get_instance();
@@ -75,26 +74,34 @@ class book{
     }
     public static function add_new_book($name,$isbn,$qty){
         $db = \DB::get_instance();
-        $query2 = $db->prepare("INSERT INTO booklist values (?,?,?)");
-        $query2->execute([$name,$isbn,$qty]);
+        $query = $db->prepare("INSERT INTO booklist values (?,?,?)");
+        $query->execute([$name,$isbn,$qty]);
     }
     public static function checkout_approved($name,$isbn,$uname){
         $db = \DB::get_instance();
         $query = $db->prepare("DELETE FROM checkout WHERE ISBN = ? and uname = ?");
         $query->execute([$isbn,$uname]);
-        $query2 = $db->prepare("INSERT INTO with_user values (?,?,?)");
-        $query2->execute([$name,$isbn,$uname]);
+        \Model\book::insert_with_user($name,$isbn,$uname);
+    }
+    public static function insert_with_user($name,$isbn,$uname){
+        $db = \DB::get_instance();
+        $query = $db->prepare("INSERT INTO with_user values (?,?,?)");
+        $query->execute([$name,$isbn,$uname]);
     }
     public static function checkin_approved($isbn,$uname){
         $db = \DB::get_instance();
-        $query2 = $db->prepare("DELETE FROM checkin WHERE ISBN = ? and uname = ?");
-        $query2->execute([$isbn,$uname]);
+        $query = $db->prepare("DELETE FROM checkin WHERE ISBN = ? and uname = ?");
+        $query->execute([$isbn,$uname]);
     }
     public static function checkin_request_send($name,$uname,$isbn){
         $db = \DB::get_instance();
         $query = $db->prepare("INSERT INTO checkin VALUES (?,?,?)");
         $query->execute([$name,$isbn,$uname]);
-        $query2 = $db->prepare("DELETE FROM with_user WHERE ISBN = ? and uname = ?");
-        $query2->execute([$isbn,$uname]);
+        \Model\book::delete_with_user($isbn,$uname);
+    }
+    public static function delete_with_user($isbn,$uname){
+        $db = \DB::get_instance();
+        $query = $db->prepare("DELETE FROM with_user WHERE ISBN = ? and uname = ?");
+        $query->execute([$isbn,$uname]);
     }
 }

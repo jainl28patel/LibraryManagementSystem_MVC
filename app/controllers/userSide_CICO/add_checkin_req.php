@@ -11,7 +11,7 @@ class add_checkin_req{
         $name = $row[0]['name'];
         \Model\book::checkin_request_send($name,$uname,$isbn);
         echo \View\Loader::make()->render("templates/request_checkin.twig", array(
-            "booklist" => \Model\book::getBookList_with_user(),
+            "booklist" => \Model\book::getBookList_with_user($uname),
         ));
     }
 }

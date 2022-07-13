@@ -37,7 +37,7 @@ else
 	echo '$DB_PASSWORD= "'$DB_PASSWORD'";'>>config/config.php
 	echo '?>'>>config/config.php
 
-	mysql -u $DB_USERNAME -p $DB_NAME<database.sql
+	mysql -u $DB_USERNAME -p $DB_NAME<schema/schema.sql
 
     echo "Starting server at port 8000"
 	cd public
