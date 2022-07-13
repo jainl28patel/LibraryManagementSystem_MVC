@@ -6,10 +6,23 @@ class client_login_verify{
     public function post(){
         $uname = $_POST['uname'];
         $password = $_POST['password'];
+        $row = \Model\User::user_exist($uname,$password);
+        $logic=TRUE;
+        if(!isset($row[0])){
+            $logic=FALSE;
+        }
+        $logic2=FALSE;
+        $row2 = \Model\User::user_verify($uname,$password);
+        if(!isset($row2[0])){
+            $logic2=FALSE;
+        }
+        if($row2[0]['password'] == hash("sha256",$password.$row2[0]['salt']) ){
+            $logic2=TRUE;
+        }
         if(!isset($_POST['uname']) && !isset($_POST['password'])){
             echo "Please enter all the details";
-        }elseif (\Model\User::user_exist($uname)) {
-            if(!\Model\User::user_verify($uname,$password)){
+        }elseif ($logic) {
+            if(!$logic2){
                 session_start();
                 $_SESSION['uname'] = $uname;
                 $sessionId = base64_encode(random_bytes(16));
@@ -29,7 +42,19 @@ class client_login_verify{
 
 class client_login{
     public function get(){
-        if(\Model\User::check_cookie_client($_COOKIE['sessionid'])){
+        $row = \Model\User::check_cookie_client($_COOKIE['sessionid']);
+        $logic = TRUE;
+        if (!empty($row[0])) {
+            session_start();
+            $_SESSION['uname'] = $row[0]['uname'];
+            echo \View\Loader::make()->render("templates/client_mainpage.twig", array(
+                "post" => $_SESSION['uname'],
+            ));
+            $logic = TRUE;
+        }else{
+            $logic = FALSE;
+        }
+        if($logic){
         }else{
             echo \View\Loader::make()->render("templates/Login_client.twig",array());
         }
@@ -39,7 +64,6 @@ class client_login{
 class client_logout{
     public function get(){
         $_SESSION =NULL;
-        // echo $_COOKIE['sessionId'];
         \Model\User::delete_cookie($_COOKIE['sessionid']);
         setcookie('sessionId',"",time()-60*60*24*30);
         setcookie('PHPSESSID',"",time()-60*60*24*30);
@@ -56,8 +80,8 @@ class client_register_process{
         }else{
             $name = $_POST['userid'];
             $password = $_POST['password'];
-            $passwordC = $_POST['passwordC'];
-            if($password != $passwordC){
+            $passwordConfirm = $_POST['passwordC'];
+            if($password != $passwordConfirm){
                 echo "Password and Confirm password doesnt match";
                 return;
             }
