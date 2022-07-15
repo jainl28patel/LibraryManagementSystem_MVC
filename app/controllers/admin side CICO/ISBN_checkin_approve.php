@@ -8,7 +8,7 @@ class ISBN_checkin_approve{
         $uname = $_POST['uname'];
         \Model\book::checkin_approved($isbn,$uname);
         $row=\Model\book::getBookBy_ISBN($isbn);
-        $qty = $row[index::zero]['count'];
+        $qty = $row[\enum\constant::zero]['count'];
         $qty++;
         \Model\book::change_qty($isbn,$qty);
         echo \View\Loader::make()->render("templates/approve_checkout_checkin.twig", array(

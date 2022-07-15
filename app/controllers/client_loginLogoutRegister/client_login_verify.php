@@ -8,15 +8,15 @@ class client_login_verify{
         $password = $_POST['password'];
         $row = \Model\User::user_exist($uname, $password);
         $logic=TRUE;
-        if(!isset($row[\Controller\index::zero])){
+        if(!isset($row[\enum\constant::zero])){
             $logic=FALSE;
         }
         $logic2=FALSE;
         $row2 = \Model\User::user_verify($uname, $password);
-        if(!isset($row2[index::zero])){
+        if(!isset($row2[\enum\constant::zero])){
             $logic2=FALSE;
         }
-        if($row2[index::zero]['password'] == hash("sha256", $password.$row2[index::zero]['salt']) ){
+        if($row2[\enum\constant::zero]['password'] == hash("sha256", $password.$row2[\enum\constant::zero]['salt']) ){
             $logic2=TRUE;
         }
         if(!isset($_POST['uname']) && !isset($_POST['password'])){
