@@ -7,12 +7,12 @@ class ISBN_checkout_approve{
         $isbn = $_POST['ISBN'];
         $uname = $_POST['uname'];
         $row=\Model\book::getBookBy_ISBN($isbn);
-        $name = $row[0]['name'];
-        $qty = $row[0]['count'];
+        $name = $row[index::zero]['name'];
+        $qty = $row[index::zero]['count'];
         \Model\book::checkout_approved($name,$isbn,$uname);
         echo \View\Loader::make()->render("templates/approve_checkout_checkin.twig", array(
-            "booklist2" => \Model\book::getBookList_checkin(),
-            "booklist1" => \Model\book::getBookList_checkout(),
+            "checkin_list" => \Model\book::getBookList_checkin(),
+            "checkout_list" => \Model\book::getBookList_checkout(),
         ));
     }
 }

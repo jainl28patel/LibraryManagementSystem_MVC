@@ -7,8 +7,8 @@ class add_checkout_request{
         session_start();
         $isbn = $_POST['ISBN'];
         $row = \Model\book::getBookBy_ISBN($isbn);
-        $name = $row[0]['name'];
-        $qty = $row[0]['count'];
+        $name = $row[index::zero]['name'];
+        $qty = $row[index::zero]['count'];
         if($qty<=0){
             echo "Sorry Out of stock";
         }else{

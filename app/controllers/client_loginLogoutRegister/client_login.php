@@ -1,14 +1,17 @@
 <?php
 
 namespace Controller;
-
+abstract class index
+{
+    const zero = 0;
+}
 class client_login{
     public function get(){
         $row = \Model\User::check_cookie_client($_COOKIE['sessionid']);
         $logic = TRUE;
-        if (!empty($row[0])) {
+        if (!empty($row[index::zero])) {
             session_start();
-            $_SESSION['uname'] = $row[0]['uname'];
+            $_SESSION['uname'] = $row[index::zero]['uname'];
             echo \View\Loader::make()->render("templates/client_mainpage.twig", array(
                 "post" => $_SESSION['uname'],
             ));

@@ -88,16 +88,16 @@
                     <th>User Name</th>
                     <th>Checkout Reqest</th>
                 </tr>
-                {% for key_a, value_a in booklist1 %}
+                {% for key_a, value_a in checkout_list %}
                     
                     <tr>
                         <td><img src="" alt=""></td>
-                        <td>{{ booklist1[key_a]['name'] }}</td>
-                        <td>{{ booklist1[key_a]['ISBN'] }}</td>
-                        <td>{{ booklist1[key_a]['uname'] }}</td>
+                        <td>{{ checkout_list[key_a]['name'] }}</td>
+                        <td>{{ checkout_list[key_a]['ISBN'] }}</td>
+                        <td>{{ checkout_list[key_a]['uname'] }}</td>
                         <td><form action="\ISBN_checkout_approve" method="post">
-                                <input type="text" name="ISBN" value="{{ booklist1[key_a]['ISBN'] }}" class="hidden">
-                                <input type="text" name="uname" value="{{ booklist1[key_a]['uname'] }}" class="hidden">
+                                <input type="text" name="ISBN" value="{{ checkout_list[key_a]['ISBN'] }}" class="hidden">
+                                <input type="text" name="uname" value="{{ checkout_list[key_a]['uname'] }}" class="hidden">
                                 <input type="submit" value="Checkout">
                             </form>
                         </td>
@@ -115,16 +115,16 @@
                     <th>User Name</th>
                     <th>Checkin Reqest</th>
                 </tr>
-                {% for key_a, value_a in booklist2 %}
+                {% for key_a, value_a in checkin_list %}
                     
                     <tr>
                         <td><img src="" alt=""></td>
-                        <td>{{ booklist2[key_a]['name'] }}</td>
-                        <td>{{ booklist2[key_a]['ISBN'] }}</td>
-                        <td>{{ booklist2[key_a]['uname'] }}</td>
+                        <td>{{ checkin_list[key_a]['name'] }}</td>
+                        <td>{{ checkin_list[key_a]['ISBN'] }}</td>
+                        <td>{{ checkin_list[key_a]['uname'] }}</td>
                         <td><form action="\ISBN_checkin_approve" method="post">
-                                <input type="text" name="ISBN" value="{{ booklist2[key_a]['ISBN'] }}" class="hidden">
-                                <input type="text" name="uname" value="{{ booklist2[key_a]['uname'] }}" class="hidden">
+                                <input type="text" name="ISBN" value="{{ checkin_list[key_a]['ISBN'] }}" class="hidden">
+                                <input type="text" name="uname" value="{{ checkin_list[key_a]['uname'] }}" class="hidden">
                                 <input type="submit" value="Checkin">
                             </form>
                         </td>

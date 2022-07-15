@@ -8,12 +8,12 @@ class ISBN_checkin_approve{
         $uname = $_POST['uname'];
         \Model\book::checkin_approved($isbn,$uname);
         $row=\Model\book::getBookBy_ISBN($isbn);
-        $qty = $row[0]['count'];
+        $qty = $row[index::zero]['count'];
         $qty++;
         \Model\book::change_qty($isbn,$qty);
         echo \View\Loader::make()->render("templates/approve_checkout_checkin.twig", array(
-            "booklist2" => \Model\book::getBookList_checkin(),
-            "booklist1" => \Model\book::getBookList_checkout(),
+            "checkin_list" => \Model\book::getBookList_checkin(),
+            "checkout_list" => \Model\book::getBookList_checkout(),
         ));
     }
 }

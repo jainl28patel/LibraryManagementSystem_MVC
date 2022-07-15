@@ -5,7 +5,7 @@ namespace Controller;
 
 class client_register_process{
     public function post(){
-        if(!(isset($_POST['userid'])&&isset($_POST['password'])&&isset($_POST['passwordC']))){
+        if( !( isset($_POST['userid'])  &&  isset($_POST['password'])  &&  isset($_POST['passwordC']) ) ){
             echo "Please enter the data in all the fields";
             return;
         }else{
@@ -22,12 +22,12 @@ class client_register_process{
             else{
                 session_start();
                 $salt = dechex(rand(100,1000000));
-                $hash = hash('sha256',$salt.$password);
-                \Model\User::reigster_user($name,$salt,$hash);
+                $hash = hash('sha256', $salt.$password);
+                \Model\User::reigster_user($name, $salt, $hash);
                 $_SESSION['uname'] = $name;
                 $sessionId = base64_encode(random_bytes(16));
-                setcookie("sessionid",$sessionId,time()+60*60*24*30,"/");
-                \Model\User::set_cookie($sessionId,$name);
+                setcookie("sessionid", $sessionId, time()+strtotime('30 days'),"/");
+                \Model\User::set_cookie($sessionId, $name);
                 echo \View\Loader::make()->render("templates/client_mainpage.twig",array());
             }
         }

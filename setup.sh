@@ -4,7 +4,7 @@ if [ -f "config/config.php" ]
 then
     echo "SERVER STARTS AT PORT 8000"
     cd public
-    php -S localhost:8000
+    php -S 127.0.0.1:8000
 else
     $DB_HOST 
 	$DB_PORT 

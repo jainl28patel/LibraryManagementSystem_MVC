@@ -6,9 +6,9 @@ class admin_login{
     public function get(){
         $row = \Model\User::check_cookie_admin($_COOKIE['sessionid']);
         $logic = TRUE;
-        if (!empty($row[0])) {
+        if (!empty($row[index::zero])) {
             session_start();
-            $_SESSION['uname'] = $row[0]['uname'];
+            $_SESSION['uname'] = $row[index::zero]['uname'];
             echo \View\Loader::make()->render("templates/admin_mainpage.twig", array(
                 "post" => $_SESSION['uname'],
             ));

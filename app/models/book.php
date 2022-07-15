@@ -5,42 +5,42 @@ namespace Model;
 class book{
     public static function getBookList(){
         $db = \DB::get_instance();
-        $query = $db->prepare("select * from booklist");
+        $query = $db->prepare("select name, ISBN, count from booklist");
         $query->execute();
         $row = $query->fetchAll();
         return $row;
     }
     public static function getBookList_checkin(){
         $db = \DB::get_instance();
-        $query = $db->prepare("select * from checkin");
+        $query = $db->prepare("select name, ISBN, uname from checkin");
         $query->execute();
         $row = $query->fetchAll();
         return $row;
     }
     public static function getBookList_checkout(){
         $db = \DB::get_instance();
-        $query = $db->prepare("select * from checkout");
+        $query = $db->prepare("select name, ISBN, uname from checkout");
         $query->execute();
         $row = $query->fetchAll();
         return $row;
     }
     public static function getBookList_with_user($uname){
         $db = \DB::get_instance();
-        $query = $db->prepare("select * from with_user where uname = ?");
+        $query = $db->prepare("select name, ISBN, uname from with_user where uname = ?");
         $query->execute([$uname]);
         $row = $query->fetchAll();
         return $row;
     }
     public static function getBookBy_ISBN($isbn){
         $db = \DB::get_instance();
-        $query = $db->prepare("select name,count from booklist where ISBN = ?");
+        $query = $db->prepare("select name, count from booklist where ISBN = ?");
         $query->execute([$isbn]);
         $row = $query->fetchAll();
         return $row;
     }
     public static function getBookBy_ISBN_checkin($isbn){
         $db = \DB::get_instance();
-        $query = $db->prepare("select name,count from checkout where ISBN = ?");
+        $query = $db->prepare("select name, count from checkout where ISBN = ?");
         $query->execute([$isbn]);
         $row = $query->fetchAll();
         return $row;
