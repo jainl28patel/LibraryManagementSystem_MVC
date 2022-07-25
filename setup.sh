@@ -41,5 +41,5 @@ else
 
     echo "Starting server at port 8000"
 	cd public
-	php -S localhost:8000
+	php -S 127.0.0.1:8000
 fi

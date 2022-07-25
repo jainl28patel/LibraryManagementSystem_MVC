@@ -1,5 +1,4 @@
-Terminal close -- exit!
-trib 8.0.29, for macos12.2 (arm64)
+-- MySQL dump 10.13  Distrib 8.0.29, for macos12.2 (arm64)
 --
 -- Host: localhost    Database: mvc
 -- ------------------------------------------------------
@@ -60,7 +59,7 @@ CREATE TABLE `booklist` (
 
 LOCK TABLES `booklist` WRITE;
 /*!40000 ALTER TABLE `booklist` DISABLE KEYS */;
-INSERT INTO `booklist` VALUES ('ja',2,1),('jai',3,6),('Cookies',111,12),('test book 1',9696,10);
+INSERT INTO `booklist` VALUES ('ja',2,11),('jai',3,3),('book4',15242,12),('cookies',66,5);
 /*!40000 ALTER TABLE `booklist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,6 +83,7 @@ CREATE TABLE `checkin` (
 
 LOCK TABLES `checkin` WRITE;
 /*!40000 ALTER TABLE `checkin` DISABLE KEYS */;
+INSERT INTO `checkin` VALUES ('ja',2,'tt'),(NULL,9696,'tt');
 /*!40000 ALTER TABLE `checkin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -107,6 +107,7 @@ CREATE TABLE `checkout` (
 
 LOCK TABLES `checkout` WRITE;
 /*!40000 ALTER TABLE `checkout` DISABLE KEYS */;
+INSERT INTO `checkout` VALUES ('jai',3,'t2'),('jai',3,'t2'),('ja',2,'tt');
 /*!40000 ALTER TABLE `checkout` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,7 +130,7 @@ CREATE TABLE `cookies` (
 
 LOCK TABLES `cookies` WRITE;
 /*!40000 ALTER TABLE `cookies` DISABLE KEYS */;
-INSERT INTO `cookies` VALUES ('t1','RlJqxm7FVOpYOTXJ0y0dHQ=='),('t1','nBNs0E4my7OPLL2uXGS/XA==');
+INSERT INTO `cookies` VALUES ('t1','RlJqxm7FVOpYOTXJ0y0dHQ=='),('t1','nBNs0E4my7OPLL2uXGS/XA=='),('admin','LYDIfu06E+w/1Pki2RIMDw=='),('tt','KIxm7Gyb2EGkRAl9mw75yA=='),('tt','VeKBVW1DGlNgUguhg9ahYw==');
 /*!40000 ALTER TABLE `cookies` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,7 +154,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('t1','cc103','824f43df52be325e8fca4758aea7fc61584d2a667847f9fbcada7e7b416080ca'),('t2','bed3d','28ce5e1e1505ee6de17858a640627cb7e39ef77f8b399d5552f05b786b342fb7');
+INSERT INTO `user` VALUES ('t2','bed3d','28ce5e1e1505ee6de17858a640627cb7e39ef77f8b399d5552f05b786b342fb7'),('t3','a4b6a','7cc01b2e3e8eec992013c82babe87844dfd3497935f7542358247634c084921d'),('tt','b63ef','597585d598fccb92b0c00675157a31ad696cea61e11b8de9d65001dc154b53ca'),('','21ec3','ae5888c1f1baeed77039c24224b8883efc0e11de9e790fd747ff722a0de3b84d'),('aa','c77ee','c967ecb5713e285749fa0a8fb35e1af071bd144f68d8112a4fe30a92347a659e');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +178,7 @@ CREATE TABLE `with_user` (
 
 LOCK TABLES `with_user` WRITE;
 /*!40000 ALTER TABLE `with_user` DISABLE KEYS */;
-INSERT INTO `with_user` VALUES ('Cookies',111,'t2'),('Cookies',111,'t1'),('jai',3,'t1'),('ja',2,'t2');
+INSERT INTO `with_user` VALUES ('jai',3,'t1'),('ja',2,'t2'),(NULL,111,'t3'),(NULL,111,'t3'),('ja',2,'t3'),('jai',3,'tt'),('ja',2,'tt'),('cookies',66,'tt'),('book4',15242,'tt'),('ja',2,'aa');
 /*!40000 ALTER TABLE `with_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -190,4 +191,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-13 13:24:02
+-- Dump completed on 2022-07-25 13:25:49
