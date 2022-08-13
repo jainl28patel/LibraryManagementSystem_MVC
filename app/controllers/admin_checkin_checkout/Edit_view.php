@@ -2,7 +2,7 @@
 
 namespace Controller;
 
-class _view_edit{
+class Edit_view{
     public static function get(){
         $row = \Model\User::check_cookie_admin($_COOKIE['sessionid']);
         $logic = TRUE;

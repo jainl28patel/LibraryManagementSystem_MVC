@@ -95,7 +95,7 @@
                         <td>{{ booklist[key_a]['name'] }}</td>
                         <td>{{ booklist[key_a]['ISBN'] }}</td>
                         <td>{{ booklist[key_a]['uname'] }}</td>
-                        <td><form action="\ISBN_checkin_req" method="post">
+                        <td><form action="\checkin_req" method="post">
                                 <input type="text" name="ISBN" value="{{ booklist[key_a]['ISBN'] }}" class="hidden">
                                 <input type="submit" value="Checkin">
                             </form>

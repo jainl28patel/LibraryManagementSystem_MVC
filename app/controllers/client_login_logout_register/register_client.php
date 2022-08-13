@@ -2,8 +2,11 @@
 
 namespace Controller;
 
-
-class client_register_process{
+class Register_Client {
+    public function get(){
+        echo \View\Loader::make()->render("templates/register_client.twig", array(
+        ));
+    }
     public function post(){
         if( !( isset($_POST['userid'])  &&  isset($_POST['password'])  &&  isset($_POST['passwordC']) ) ){
             echo "Please enter the data in all the fields";
